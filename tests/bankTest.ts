@@ -52,5 +52,38 @@ try {
     console.log('Scenario 3 passed');
 }
 
+// Scenario 1: Successful Withdrawal
+try {
+    const message = bank.withdraw(1234567890, 1000);
+    console.log('Testing Withdrawal');
+    console.log('Scenario 1 passed:', message);
+} catch (e) {
+    console.log('Scenario 1 failed');
+}
+
+// Scenario 2: Unsuccessful Withdrawal due to Insufficient Balance
+try {
+    bank.withdraw(1234567891, 2000);
+    console.log('Scenario 2 failed');
+} catch (e) {
+    console.log('Scenario 2 passed');
+}
+
+// Scenario 3: Unsuccessful Withdrawal due to Invalid Account
+try {
+    bank.withdraw(9999999999, 100);
+    console.log('Scenario 3 failed');
+} catch (e) {
+    console.log('Scenario 3 passed');
+}
+
+// Scenario 4: Unsuccessful Withdrawal due to Invalid Amount
+try {
+    bank.withdraw(1234567890, -100);
+    console.log('Scenario 4 failed');
+} catch (e) {
+    console.log('Scenario 4 passed');
+}
+
 
 
