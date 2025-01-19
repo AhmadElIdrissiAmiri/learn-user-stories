@@ -87,3 +87,19 @@ try {
 
 
 
+// Scenario 1: Successful Balance Check
+try {
+    const message = bank.getBalance(1234567890);
+    console.log('Testing Balance Check');
+    console.log('Scenario 1 passed:', message);
+} catch (e) {
+    console.log('Scenario 1 failed');
+}
+
+// Scenario 2: Unsuccessful Balance Check due to Invalid Account
+try {
+    bank.getBalance(9999999999);
+    console.log('Scenario 2 failed');
+} catch (e) {
+    console.log('Scenario 2 passed');
+}
