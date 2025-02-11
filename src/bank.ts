@@ -36,4 +36,52 @@ export class Bank implements BankType {
         this.accounts.push(account);
         return account;
     }
+    // Issue # 2 deposit function
+    public deposit(accountId: number, amount: number): string {
+        if (this.isAccountNumberInvalid(accountId)) {
+            throw new Error("Invalid account ID");
+        }
+        if (typeof amount !== "number" || amount <= 0) {
+            throw new Error("Invalid deposit amount");
+        }
+        const account = this.findAccountById(accountId);
+        if (!account) {
+            throw new Error("Account not found");
+        }
+        account.balance += amount;
+        return `Deposit successful. New balance: ${account.balance}`;
+    }
+    public withdraw(accountId: number, amount: number): string {
+        if (this.isAccountNumberInvalid(accountId)) {
+            throw new Error("Invalid account ID");
+        }
+    
+        const account = this.findAccountById(accountId);
+        if (!account) {
+            throw new Error("Account not found");
+        }
+    
+        if (amount <= 0 || isNaN(amount)) {
+            throw new Error("Invalid withdrawal amount");
+        }
+    
+        if (account.balance < amount) {
+            throw new Error("Insufficient balance");
+        }
+    
+        account.balance -= amount;
+        return `Withdrawal of $${amount} successful. Remaining balance: $${account.balance}`;
+    }
+    public getBalance(accountId: number): string {
+        if (this.isAccountNumberInvalid(accountId)) {
+            throw new Error("Invalid account ID");
+        }
+    
+        const account = this.findAccountById(accountId);
+        if (!account) {
+            throw new Error("Account not found");
+        }
+    
+        return `The current balance is $${account.balance}`;
+    }
 }
